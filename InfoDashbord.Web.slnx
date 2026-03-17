@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="InfoDashbord.Application/InfoDashbord.Application.csproj" Id="03b2b153-0ebe-457e-b351-8705ae639cbd" />
+  <Project Path="src/InfoDashbord.Application/InfoDashbord.Application.csproj" />
   <Project Path="src/InfoDashbord.Domain/InfoDashbord.Domain.csproj" Id="17a4fa08-82b4-43bb-8dac-da3a846132e3" />
   <Project Path="src/InfoDashbord.Infrastructure/InfoDashbord.Infrastructure.csproj" Id="a1734047-ae9a-4fdf-88c7-7329d323ff02" />
   <Project Path="src/InfoDashbord.Web/InfoDashbord.Web.csproj" />
