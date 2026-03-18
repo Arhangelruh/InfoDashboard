@@ -10,7 +10,7 @@
 		/// <summary>
 		/// City name.
 		/// </summary>
-		public string CityName { get; set; }
+		public required string CityName { get; set; }
 
 		/// <summary>
 		/// Url for request.
@@ -20,6 +20,6 @@
 		/// <summary>
 		/// Navigation to Bank Departments.
 		/// </summary>
-		public ICollection<BankDepartment> BankDepartments { get; set; }
+		public ICollection<BankDepartment> BankDepartments { get; set; } = [];
 	}
 }

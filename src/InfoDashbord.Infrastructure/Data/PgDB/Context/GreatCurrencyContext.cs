@@ -34,7 +34,7 @@ namespace InfoDashbord.Infrastructure.Data.PgDB.Context
 		/// <summary>
 		/// Currencies.
 		/// </summary>
-		public DbSet<Currency> Currency { get; set; }		
+		public DbSet<Currency> Currencies { get; set; }		
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

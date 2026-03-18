@@ -10,7 +10,7 @@
 		/// <summary>
 		/// Department adress.
 		/// </summary>
-		public string DepartmentAddress { get; set; }
+		public string DepartmentAddress { get; set; } = null!;
 
 		/// <summary>
 		/// Bank id.
@@ -20,12 +20,12 @@
 		/// <summary>
 		/// Navigation to Bank.
 		/// </summary>
-		public Bank Bank { get; set; }
+		public Bank Bank { get; set; } = null!;
 
 		/// <summary>
-		/// Navigation to Bank.
+		/// Navigation to Currency.
 		/// </summary>
-		public ICollection<Currency> Currencies { get; set; }
+		public ICollection<Currency> Currencies { get; set; } = null!;
 
 		/// <summary>
 		/// City id.
@@ -35,6 +35,6 @@
 		/// <summary>
 		/// Navigation to City.
 		/// </summary>
-		public City City { get; set; }
+		public City City { get; set; } = null!;
 	}
 }

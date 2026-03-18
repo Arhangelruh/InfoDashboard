@@ -75,7 +75,7 @@
 		/// <summary>
 		/// Navigate to bank department.
 		/// </summary>
-		public BankDepartment BankDepartment { get; set; }
+		public BankDepartment BankDepartment { get; set; } = null!;
 
 		/// <summary>
 		/// Navigate to request.
@@ -85,6 +85,6 @@
 		/// <summary>
 		/// Navigate to request.
 		/// </summary>
-		public Request Request { get; set; }
+		public Request Request { get; set; } = null!;
 	}
 }
