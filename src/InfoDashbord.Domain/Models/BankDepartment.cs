@@ -20,9 +20,12 @@
 		/// <summary>
 		/// Navigation to Bank.
 		/// </summary>
+		public Bank Bank { get; set; } = null!;
 
 		/// <summary>
+		/// Navigation to Currency.
 		/// </summary>
+		public ICollection<Currency> Currencies { get; set; } = null!;
 
 		/// <summary>
 		/// City id.
@@ -32,5 +35,6 @@
 		/// <summary>
 		/// Navigation to City.
 		/// </summary>
+		public City City { get; set; } = null!;
 	}
 }
