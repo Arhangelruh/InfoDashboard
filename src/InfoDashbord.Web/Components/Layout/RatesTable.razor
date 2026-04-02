@@ -1,0 +1,84 @@
+﻿<div class="table-component">
+<table>
+	<tr>
+		<th class="table-headrow" colspan="2">
+			<img class="brand-label" src="/Pictures/Brand_lable.png" />
+			Статусбанк
+		</th>
+		<th colspan="2">USD</th>
+		<th colspan="2">EUR</th>
+		<th colspan="2">RUB</th>
+		<th colspan="2">EUR/USD</th>
+		<th colspan="2">USD/RUB</th>
+		<th colspan ="2">EUR/RUB</th>
+	</tr>
+		<tr class="spred-border">
+		<th>ОТДЕЛЕНИЯ</th>
+		<th class="table-label-medium">ПОКАЗАТЕЛИ</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+		<th class="table-label-medium">ПОКУПКА</th>
+		<th class="table-label-medium">ПРОДАЖА</th>
+	</tr>
+	@foreach(var department in Model.OurCurrency)
+	{
+		<tr @key="department.BankDepartmentId">
+				<td class="table-name-column" rowspan="4">@department.DepartmentName</td>
+				<td class="table-label-medium">КУРС</td>
+			<td>@department.USDBuyRate</td>
+			<td>@department.USDSaleRate</td>
+			<td>@department.EURBuyRate</td>
+			<td>@department.EURSaleRate</td>
+			<td>@department.RUBBuyRate</td>
+			<td>@department.RUBSaleRate</td>
+			<td>@department.EURUSDBuyRate</td>
+			<td>@department.EURUSDSellRate</td>
+			<td>@department.USDRUBBuyRate</td>
+			<td>@department.USDRUBSellRate</td>
+			<td>@department.EURRUBBuyRate</td>
+			<td>@department.EURRUBSellRate</td>
+		</tr>
+		<tr>
+				<td class="table-label-medium">ОБЬЕМ ОПЕРАЦИЙ</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+				<td class="table-label-medium">МАРЖА</td>
+			<td colspan="2"></td>
+			<td colspan="2"></td>
+			<td colspan="2"></td>
+			<td colspan="2"></td>
+			<td colspan="2"></td>
+			<td colspan="2"></td>
+		</tr>
+			<tr class="spred-border">
+				<td class="table-label-medium">ОЧЕРЕДЬ</td>
+			<td colspan="12"></td>
+		</tr>
+	}
+
+</table>
+</div>
+@code {
+	[Parameter] public DashbordViewModel Model { get; set; } = null!;
+
+}

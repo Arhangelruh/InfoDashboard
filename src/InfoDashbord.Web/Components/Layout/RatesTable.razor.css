@@ -1,0 +1,45 @@
+.table-component{
+    display: flex;
+ justify-content: center;
+}
+
+table{
+    border: 1px solid #88C437;
+    border-collapse: collapse;    
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th{
+    border: 1px solid #88C437;
+    text-align: center;
+    color: gray;
+}
+
+ td{
+    border: 1px solid #88C437; 
+    text-align: center;
+}
+
+.brand-label{
+        height: 20px;
+}
+
+.table-headrow{
+    height: 40px;
+}
+
+.table-label-medium{
+    font-size: 10px;
+    font-weight: 700;
+    color: gray;
+}
+
+.table-name-column{
+    width: 20%;
+}
+
+.spred-border{
+    border-bottom:3px solid #88C437;
+}

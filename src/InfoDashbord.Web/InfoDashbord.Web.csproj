@@ -12,10 +12,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NLog" Version="6.1.1" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="6.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InfoDashbord.Application\InfoDashbord.Application.csproj" />
     <ProjectReference Include="..\InfoDashbord.Infrastructure\InfoDashbord.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Pictures\" />
   </ItemGroup>
 
 </Project>

@@ -1,30 +1,33 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">InfoDashbord.Web</a>
-    </div>
-</div>
+﻿@inject ICityService CityService
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+<div class="navmenu">
+    <div class="logo-container">
+        <a class="navbar-brand" href="">
+           <div class="navbar-content">
+              <img src="/Pictures/Home.svg" />
+              <p class="logotext">InfoDashbord</p>
+            </div>
+        </a>
+    </div>  
+    @if(cities != null && cities.Count > 0){
+        <nav class="nav flex-column">    
+          @foreach(var city in cities){
+            <div class="nav-item">
+              <NavLink class="nav-link" href="@($"/city/{city.Id}")">
+               @city.CityName
+              </NavLink>
+            </div>        
+          }
     </nav>
+    }
 </div>
 
+
+@code{
+    private List<CityDTO>? cities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cities = await CityService.GetAllAsync();
+    }
+}

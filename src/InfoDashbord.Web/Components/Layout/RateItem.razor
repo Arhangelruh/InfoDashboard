@@ -1,0 +1,24 @@
+﻿@rendermode InteractiveServer
+<div class="rate-item">
+    <div class="rate-item_summary" @onclick="HandleClick">
+        @if(RateModel.BestBanks.Any(b=>b.BankId == BankId))
+        {
+            <div class="black">@RateModel.Rate</div>
+        }
+        else
+        {
+            <div class="red">@RateModel.Rate</div>
+        }        
+    </div>
+</div>
+
+@code {
+    [Parameter] public RateViewModel RateModel { get; set; } = null!;
+    [Parameter] public EventCallback<RateViewModel> OnClick { get; set; }
+    [Parameter] public int BankId { get; set; }
+
+    private async Task HandleClick()
+    {
+        await OnClick.InvokeAsync(RateModel);
+    }
+}
