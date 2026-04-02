@@ -14,6 +14,9 @@ namespace InfoDashbord.Infrastructure.Data.PgDB.Configurations
 			builder.ToTable(TableConstants.BankDepartment, t => t.ExcludeFromMigrations())
 				.HasKey(bankdepartnent => bankdepartnent.Id);
 
+			builder.Property(bankdepartnent => bankdepartnent.DepartmentName)
+				.IsRequired();
+
 			builder.Property(bankdepartnent => bankdepartnent.DepartmentAddress)
 				.IsRequired();
 

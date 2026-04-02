@@ -1,6 +1,4 @@
-﻿using InfoDashbord.Domain.Models;
-
-namespace InfoDashbord.Application.DTOModels
+﻿namespace InfoDashbord.Application.DTOModels
 {
 	public class CurrencyDTO
 	{
@@ -73,5 +71,15 @@ namespace InfoDashbord.Application.DTOModels
 		/// Department name.
 		/// </summary>
 		public string DepartmentName { get; set; } = null!;
+
+		/// <summary>
+		/// Department adress.
+		/// </summary>
+		public string DepartmentAddress { get; set; } = null!;
+
+		/// <summary>
+		/// Bank id.
+		/// </summary>
+		public int BankId {  get; set; }
 	}
 }

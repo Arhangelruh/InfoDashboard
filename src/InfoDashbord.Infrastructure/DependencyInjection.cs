@@ -1,5 +1,6 @@
 ﻿using InfoDashbord.Application.Interfaces;
 using InfoDashbord.Infrastructure.Data.PgDB.Context;
+using InfoDashbord.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,11 +20,12 @@ namespace InfoDashbord.Infrastructure
 			if (string.IsNullOrWhiteSpace(connectionString))
 				throw new InvalidOperationException("Connection string is not configured.");
 
-			services.AddDbContext<GreatCurrencyContext>(options =>
-				options.UseNpgsql(connectionString));
+			services.AddDbContextFactory<GreatCurrencyContext>(options =>
+			  options.UseNpgsql(connectionString));
 
-			services.AddScoped<IGreatCurrencyDbContext>(sp =>
-				sp.GetRequiredService<GreatCurrencyContext>());
+			services.AddScoped<ICityService, CityService>();
+			services.AddScoped<IBankService, BankService>();
+			services.AddScoped<ICurrencyService, CurrencyService>();
 
 			return services;
 		}

@@ -1,16 +1,18 @@
 ﻿using InfoDashbord.Application.DTOModels;
 using InfoDashbord.Application.Interfaces;
+using InfoDashbord.Infrastructure.Data.PgDB.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfoDashbord.Application.Services
+namespace InfoDashbord.Infrastructure.Services
 {
-	public class BankService(IGreatCurrencyDbContext db) : IBankService
+	public class BankService(IDbContextFactory<GreatCurrencyContext> factory) : IBankService
 	{
-		private readonly IGreatCurrencyDbContext _db = db ?? throw new ArgumentNullException(nameof(db));
+		private readonly IDbContextFactory<GreatCurrencyContext> _factory = factory ?? throw new ArgumentNullException(nameof(factory));
 
 		public async Task<List<BankDTO>> GetAllBanksAsync()
 		{
-			var allBanks = await _db.Banks
+			var db = await _factory.CreateDbContextAsync();
+			var allBanks = await db.Banks
 				.AsNoTracking()
 				.Select(c => new BankDTO
 				{
@@ -24,7 +26,8 @@ namespace InfoDashbord.Application.Services
 
 		public async Task<BankDTO?> GetBankByIdAsync(int bankid)
 		{
-			var bank = await _db.Banks
+			var db = await _factory.CreateDbContextAsync();
+			var bank = await db.Banks
 				.AsNoTracking()
 				.Where(c => c.Id == bankid)
 				.Select(c => new BankDTO
@@ -39,7 +42,8 @@ namespace InfoDashbord.Application.Services
 
 		public async Task<BankDTO?> GetBankByNameAsync(string bankName)
 		{
-			var bank = await _db.Banks
+			var db = await _factory.CreateDbContextAsync();
+			var bank = await db.Banks
 				.AsNoTracking()
 				.Where(c => c.BankName == bankName)
 				.Select(c => new BankDTO

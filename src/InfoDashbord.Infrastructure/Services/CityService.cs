@@ -1,18 +1,21 @@
 ﻿using InfoDashbord.Application.DTOModels;
 using InfoDashbord.Application.Interfaces;
+using InfoDashbord.Infrastructure.Data.PgDB.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfoDashbord.Application.Services
+namespace InfoDashbord.Infrastructure.Services
 {
 	/// <inheritdoc/>		
-	public class CityService(IGreatCurrencyDbContext db) : ICityService
+	public class CityService(IDbContextFactory<GreatCurrencyContext> factory) : ICityService
 	{
-		private readonly IGreatCurrencyDbContext _db = db ?? throw new ArgumentNullException(nameof(db));
+		private readonly IDbContextFactory<GreatCurrencyContext> _factory = factory ?? throw new ArgumentNullException(nameof(factory));
 
 
 		public async Task<List<CityDTO>> GetAllAsync()
 		{
-			var allCities = await _db.Cities
+			var db = await _factory.CreateDbContextAsync();
+
+			var allCities = await db.Cities
 				.AsNoTracking()
 				.Select(c => new CityDTO
 				{
@@ -24,9 +27,9 @@ namespace InfoDashbord.Application.Services
 			return allCities;
 		}
 
-		public async Task<CityDTO?> GetByIdAsync(int id) { 
-		    
-			var city = await _db.Cities
+		public async Task<CityDTO?> GetByIdAsync(int id) {
+			var db = await _factory.CreateDbContextAsync();
+			var city = await db.Cities
 				.AsNoTracking ()
 				.Where(c => c.Id == id)
 				.Select(c => new CityDTO

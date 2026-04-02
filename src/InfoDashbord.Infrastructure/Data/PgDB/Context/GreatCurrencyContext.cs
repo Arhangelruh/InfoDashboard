@@ -1,14 +1,10 @@
-﻿using InfoDashbord.Application.Interfaces;
-using InfoDashbord.Domain.Models;
+﻿using InfoDashbord.Domain.Models;
 using InfoDashbord.Infrastructure.Data.PgDB.Configurations;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InfoDashbord.Infrastructure.Data.PgDB.Context
 {
-	public class GreatCurrencyContext(DbContextOptions<GreatCurrencyContext> options) : DbContext(options), IGreatCurrencyDbContext
+	public class GreatCurrencyContext(DbContextOptions<GreatCurrencyContext> options) : DbContext(options)
 	{
 
 		/// <summary>
@@ -34,7 +30,7 @@ namespace InfoDashbord.Infrastructure.Data.PgDB.Context
 		/// <summary>
 		/// Currencies.
 		/// </summary>
-		public DbSet<Currency> Currencies { get; set; }		
+		public DbSet<Currency> Currencies { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -44,7 +40,7 @@ namespace InfoDashbord.Infrastructure.Data.PgDB.Context
 			modelBuilder.ApplyConfiguration(new BankConfiguration());
 			modelBuilder.ApplyConfiguration(new RequestConfiguration());
 			modelBuilder.ApplyConfiguration(new BankDepartmentConfiguration());
-			modelBuilder.ApplyConfiguration(new CurrencyConfiguration());			
+			modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}
