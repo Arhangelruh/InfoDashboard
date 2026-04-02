@@ -1,9 +1,9 @@
-﻿using InfoDashbord.Infrastructure.Data.PgDB.Constants;
+﻿using InfoDashboard.Infrastructure.Data.PgDB.Constants;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using InfoDashbord.Domain.Models;
+using InfoDashboard.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfoDashbord.Infrastructure.Data.PgDB.Configurations
+namespace InfoDashboard.Infrastructure.Data.PgDB.Configurations
 {
 	internal class CityConfiguration : IEntityTypeConfiguration<City>
 	{

@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Web.Constants
+﻿namespace InfoDashboard.Web.Constants
 {
 	public static class CurrencyList
 	{

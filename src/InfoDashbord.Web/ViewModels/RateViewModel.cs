@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Web.ViewModels
+﻿namespace InfoDashboard.Web.ViewModels
 {
 	public class RateViewModel
 	{

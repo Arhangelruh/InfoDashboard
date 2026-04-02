@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 
-namespace InfoDashbord.Web.Services
+namespace InfoDashboard.Web.Services
 {
 	public class CustomErrorBoundary(ILogger<CustomErrorBoundary> logger) : ErrorBoundary
 	{

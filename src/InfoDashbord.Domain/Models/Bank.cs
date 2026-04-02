@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Domain.Models
+﻿namespace InfoDashboard.Domain.Models
 {
 	public class Bank
 	{

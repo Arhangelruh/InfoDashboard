@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace InfoDashbord.Application.DTOModels
+namespace InfoDashboard.Application.DTOModels
 {
 	public class BankDTO
 	{

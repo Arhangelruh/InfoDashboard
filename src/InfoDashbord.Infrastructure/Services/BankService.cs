@@ -1,9 +1,9 @@
-﻿using InfoDashbord.Application.DTOModels;
-using InfoDashbord.Application.Interfaces;
-using InfoDashbord.Infrastructure.Data.PgDB.Context;
+﻿using InfoDashboard.Application.DTOModels;
+using InfoDashboard.Application.Interfaces;
+using InfoDashboard.Infrastructure.Data.PgDB.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfoDashbord.Infrastructure.Services
+namespace InfoDashboard.Infrastructure.Services
 {
 	public class BankService(IDbContextFactory<GreatCurrencyContext> factory) : IBankService
 	{

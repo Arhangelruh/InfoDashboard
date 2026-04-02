@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Web.Models
+﻿namespace InfoDashboard.Web.Models
 {
 	public class BankSettings
 	{

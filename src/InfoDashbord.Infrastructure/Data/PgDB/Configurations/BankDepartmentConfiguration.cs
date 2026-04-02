@@ -1,9 +1,9 @@
-﻿using InfoDashbord.Domain.Models;
-using InfoDashbord.Infrastructure.Data.PgDB.Constants;
+﻿using InfoDashboard.Domain.Models;
+using InfoDashboard.Infrastructure.Data.PgDB.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace InfoDashbord.Infrastructure.Data.PgDB.Configurations
+namespace InfoDashboard.Infrastructure.Data.PgDB.Configurations
 {
 	internal class BankDepartmentConfiguration : IEntityTypeConfiguration<BankDepartment>
 	{

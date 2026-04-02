@@ -1,8 +1,8 @@
-﻿using InfoDashbord.Domain.Models;
-using InfoDashbord.Infrastructure.Data.PgDB.Configurations;
+﻿using InfoDashboard.Domain.Models;
+using InfoDashboard.Infrastructure.Data.PgDB.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace InfoDashbord.Infrastructure.Data.PgDB.Context
+namespace InfoDashboard.Infrastructure.Data.PgDB.Context
 {
 	public class GreatCurrencyContext(DbContextOptions<GreatCurrencyContext> options) : DbContext(options)
 	{

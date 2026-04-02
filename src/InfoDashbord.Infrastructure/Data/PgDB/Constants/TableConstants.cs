@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Infrastructure.Data.PgDB.Constants
+﻿namespace InfoDashboard.Infrastructure.Data.PgDB.Constants
 {
 	public class TableConstants
 	{

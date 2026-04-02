@@ -1,4 +1,4 @@
-﻿namespace InfoDashbord.Application.DTOModels
+﻿namespace InfoDashboard.Application.DTOModels
 {
 	public class CurrencyDTO
 	{

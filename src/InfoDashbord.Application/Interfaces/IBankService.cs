@@ -1,6 +1,6 @@
-﻿using InfoDashbord.Application.DTOModels;
+﻿using InfoDashboard.Application.DTOModels;
 
-namespace InfoDashbord.Application.Interfaces
+namespace InfoDashboard.Application.Interfaces
 {
 	public interface IBankService
 	{

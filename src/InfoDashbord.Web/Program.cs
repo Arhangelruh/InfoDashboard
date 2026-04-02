@@ -1,8 +1,7 @@
-using InfoDashbord.Application;
-using InfoDashbord.Infrastructure;
-using InfoDashbord.Web.Components;
-using InfoDashbord.Web.Models;
-using InfoDashbord.Web.Services;
+using InfoDashboard.Infrastructure;
+using InfoDashboard.Web.Components;
+using InfoDashboard.Web.Models;
+using InfoDashboard.Web.Services;
 using NLog;
 using NLog.Web;
 

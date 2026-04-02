@@ -1,7 +1,7 @@
-﻿using InfoDashbord.Application.Interfaces;
-using InfoDashbord.Web.ViewModels;
+﻿using InfoDashboard.Application.Interfaces;
+using InfoDashboard.Web.ViewModels;
 
-namespace InfoDashbord.Web.Services
+namespace InfoDashboard.Web.Services
 {
 	public class GetCurrencyService(ICurrencyService currencyService)
 	{

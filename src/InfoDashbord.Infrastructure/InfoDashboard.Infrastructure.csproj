@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InfoDashbord.Application\InfoDashbord.Application.csproj" />
-    <ProjectReference Include="..\InfoDashbord.Domain\InfoDashbord.Domain.csproj" />
+    <ProjectReference Include="..\InfoDashbord.Application\InfoDashboard.Application.csproj" />
+    <ProjectReference Include="..\InfoDashbord.Domain\InfoDashboard.Domain.csproj" />
   </ItemGroup>
 
 </Project>

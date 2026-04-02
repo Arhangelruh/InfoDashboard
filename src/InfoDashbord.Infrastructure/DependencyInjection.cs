@@ -1,11 +1,11 @@
-﻿using InfoDashbord.Application.Interfaces;
-using InfoDashbord.Infrastructure.Data.PgDB.Context;
-using InfoDashbord.Infrastructure.Services;
+﻿using InfoDashboard.Application.Interfaces;
+using InfoDashboard.Infrastructure.Data.PgDB.Context;
+using InfoDashboard.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace InfoDashbord.Infrastructure
+namespace InfoDashboard.Infrastructure
 {
 	public static class DependencyInjection
 	{
