@@ -15,9 +15,35 @@
 </head>
 
 <body>
-    <Routes />
+    <CustomErrorBoundary @ref="errorBoundary">
+    
+        <ChildContent>
+            <Routes />
+        </ChildContent>
+
+        <ErrorContent Context="ex">
+            <div class="error-page">
+                <h1>Ошибка</h1>
+                <p>@ex.Message</p>
+
+                <button @onclick="Recover">
+                  Попробовать снова
+                </button>
+            </div>
+        </ErrorContent>
+
+    </CustomErrorBoundary>
     <ReconnectModal />
     <script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>
+
+@code {
+    private CustomErrorBoundary? errorBoundary;
+
+    private void Recover()
+    {
+        errorBoundary?.RecoverManually();
+    }
+}

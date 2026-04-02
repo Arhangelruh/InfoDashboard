@@ -56,7 +56,7 @@ namespace InfoDashbord.Web.Services
 				   new RateViewModel
 				   {
 					   Title = "EUR Sell",
-					   Rate = currency.Where(usd => usd.USDSaleRate > 0).Min(usd => usd.EURSaleRate),
+					   Rate = currency.Where(usd => usd.EURSaleRate > 0).Min(usd => usd.EURSaleRate),
 					   BestBanks = currency
 					   .Where(c => c.EURSaleRate == currency.Where(x => x.EURSaleRate > 0).Min(x => x.EURSaleRate))
 					   .Select(c=> new DepartmentCurrencyViewModel{
@@ -108,7 +108,7 @@ namespace InfoDashbord.Web.Services
 					new RateViewModel
 				   {
 					   Title = "EURUSD Sell",
-					   Rate = currency.Where(c => c.EURUSDSellRate > 0).Min(c=>c.EURUSDBuyRate),
+					   Rate = currency.Where(c => c.EURUSDSellRate > 0).Min(c=>c.EURUSDSellRate),
 					   BestBanks = currency
 					   .Where(c => c.EURUSDSellRate == currency.Where(c => c.EURUSDSellRate > 0).Min(c=>c.EURUSDSellRate))
 					   .Select(c=> new DepartmentCurrencyViewModel{

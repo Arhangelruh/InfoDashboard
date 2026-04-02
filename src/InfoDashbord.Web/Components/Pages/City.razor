@@ -8,13 +8,19 @@
 
 @if (mainBank != null && dashbordViewModel != null)
 {
-    <BestRates Model="dashbordViewModel" BankId="@mainBank.Id" />
-
-    <RatesTable Model="dashbordViewModel" />
+    <CustomErrorBoundary>
+       <BestRates Model="dashbordViewModel" BankId="@mainBank.Id" />
+    </CustomErrorBoundary>
+   
+    <CustomErrorBoundary>
+       <RatesTable Model="dashbordViewModel" />
+    </CustomErrorBoundary>
 }
 else
 {
-    <p>Loading...</p>
+    <div class="loading-message">
+       <p>Loading...</p>
+    </div>
 }
 
 @code {
@@ -35,41 +41,61 @@ else
             timer = new Timer(async _ =>
             {
                 await InvokeAsync(async () =>
-                {
-                    await LoadData();
-                    StateHasChanged();
-                });
+            {
+                await LoadData();
+                StateHasChanged();
+            });              
             }, null, 10000, 10000);
         }
     }
 
     private async Task LoadData()
     {
-        var newData = await GetCurrency.GetAllCurrencies(Id, mainBank!.Id);     
-
-        if(dashbordViewModel == null)
+        try
         {
-            dashbordViewModel = newData;
-            return;
-        }
+            var newData = await GetCurrency.GetAllCurrencies(Id, mainBank!.Id);
 
-        foreach (var existing in dashbordViewModel.BestCurrencies)
-        {
-            var updated = newData.BestCurrencies
-                .FirstOrDefault(x => x.Title == existing.Title);
-
-            if (updated != null)
+            if (dashbordViewModel == null && newData != null)
             {
-                existing.Rate = updated.Rate;
-                existing.BestBanks = updated.BestBanks;
+                dashbordViewModel = newData;
+                return;
             }
-        }
 
-        dashbordViewModel.OurCurrency = newData.OurCurrency;
+            foreach (var existing in dashbordViewModel.BestCurrencies)
+            {
+                var updated = newData.BestCurrencies
+                    .FirstOrDefault(x => x.Title == existing.Title);
+
+                if (updated != null)
+                {
+                    existing.Rate = updated.Rate;
+                    existing.BestBanks = updated.BestBanks;
+                }
+            }
+
+            dashbordViewModel.OurCurrency = newData.OurCurrency;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            dashbordViewModel = new();
+        }
     }
 
     public void Dispose()
     {
         timer?.Dispose();
+    }
+
+    private async Task Reload()
+    {
+        try
+        {
+            await LoadData();
+        }
+        catch
+        {
+            throw;
+        }
     }
 }

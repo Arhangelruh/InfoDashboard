@@ -1,0 +1,13 @@
+﻿<div class="error-container">
+    <h2>Ошибка</h2>
+    <p>@Message</p>
+
+    <button class="btn-retry" @onclick="OnRetry">
+        Повторить
+    </button>
+</div>
+
+@code {
+    [Parameter] public string Message { get; set; } = "Что-то пошло не так";
+    [Parameter] public EventCallback OnRetry { get; set; }
+}
