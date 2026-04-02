@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InfoDashbord.Application\InfoDashboard.Application.csproj" />
-    <ProjectReference Include="..\InfoDashbord.Infrastructure\InfoDashboard.Infrastructure.csproj" />
+    <ProjectReference Include="..\InfoDashboard.Application\InfoDashboard.Application.csproj" />
+    <ProjectReference Include="..\InfoDashboard.Infrastructure\InfoDashboard.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
