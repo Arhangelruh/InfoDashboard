@@ -7,7 +7,7 @@ namespace InfoDashboard.Web.Services
 	{
 		private readonly ICurrencyService _currencyService = currencyService ?? throw new ArgumentNullException(nameof(currencyService));
 
-		public async Task<DashbordViewModel> GetAllCurrencies(int cityId, int bankId)
+		public async Task<DashboardViewModel> GetAllCurrencies(int cityId, int bankId)
 		{
 			var currency = await _currencyService.GetCurrencyAsync(cityId);
 
@@ -194,7 +194,7 @@ namespace InfoDashboard.Web.Services
 					})
 					.ToList();
 
-				DashbordViewModel model = new()
+				DashboardViewModel model = new()
 				{
 					BestCurrencies = rateList,
 					OurCurrency = ourRates

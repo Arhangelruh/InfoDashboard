@@ -1,6 +1,6 @@
 ﻿namespace InfoDashboard.Web.ViewModels
 {
-	public class DashbordViewModel
+	public class DashboardViewModel
 	{
 		/// <summary>
 		/// Best currency and banks.
