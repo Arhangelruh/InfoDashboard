@@ -1,0 +1,47 @@
+﻿using InfoDashboard.Domain.Models;
+using InfoDashboard.Infrastructure.Data.PgDB.Constants;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace InfoDashboard.Infrastructure.Data.PgDB.Configurations
+{
+	internal class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
+	{
+		public void Configure(EntityTypeBuilder<Currency> builder)
+		{
+			builder = builder ?? throw new ArgumentNullException(nameof(builder));
+
+			builder.ToTable(TableConstants.Currency, t => t.ExcludeFromMigrations())
+				.HasKey(currency => currency.Id);
+
+			builder.Property(currency => currency.USDBuyRate)
+				.IsRequired();
+
+			builder.Property(currency => currency.USDSaleRate)
+				.IsRequired();
+
+			builder.Property(currency => currency.EURBuyRate)
+				.IsRequired();
+
+			builder.Property(currency => currency.EURSaleRate)
+				.IsRequired();
+
+			builder.Property(currency => currency.RUBBuyRate)
+				.IsRequired();
+
+			builder.Property(currency => currency.RUBSaleRate)
+				.IsRequired();
+
+			builder.HasOne(request => request.Request)
+				.WithMany(currency => currency.Currencies)
+				.HasForeignKey(request => request.RequestId)
+				.OnDelete(DeleteBehavior.Restrict);
+
+			builder.HasOne(bankdepartment => bankdepartment.BankDepartment)
+				.WithMany(currency => currency.Currencies)
+				.HasForeignKey(bankdepartment => bankdepartment.BankDepartmentId)
+				.OnDelete(DeleteBehavior.Restrict);
+
+		}
+	}
+}

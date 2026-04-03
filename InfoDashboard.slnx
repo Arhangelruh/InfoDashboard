@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/InfoDashboard.Application/InfoDashboard.Application.csproj" />
+  <Project Path="src/InfoDashboard.Domain/InfoDashboard.Domain.csproj" Id="17a4fa08-82b4-43bb-8dac-da3a846132e3" />
+  <Project Path="src/InfoDashboard.Infrastructure/InfoDashboard.Infrastructure.csproj" Id="a1734047-ae9a-4fdf-88c7-7329d323ff02" />
+  <Project Path="src/InfoDashboard.Web/InfoDashboard.Web.csproj" />
+</Solution>

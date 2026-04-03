@@ -1,0 +1,33 @@
+.rate-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.rate-item_summary {
+    cursor: pointer;
+    user-select: none;
+}
+
+.rate-item_info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.rate-item_info.open {
+    max-height: 500px;
+}
+
+.rate-item_content {
+    padding: 10px;
+    background: white;
+}
+
+.black{
+    color: black;
+}
+
+.red{
+    color: red;
+}

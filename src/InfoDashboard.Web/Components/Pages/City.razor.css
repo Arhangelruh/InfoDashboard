@@ -1,0 +1,13 @@
+﻿.best-rates-block {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.loading-message{
+    width: 100%;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+
+}
