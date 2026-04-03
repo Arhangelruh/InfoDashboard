@@ -1,0 +1,60 @@
+﻿@using InfoDashboard.Web.Constants
+@if (Model != null)
+{
+    <div class="best-rates-block">        
+        <div class="best-rates">
+           @foreach (var rate in CurrencyList.Currency)
+             {
+                <div class="best-rate">
+                    <div class="best-rate-title">    
+                        <b>@(rateTitle = rate.Length <= 3 ? rate : rate.Insert(3, "/"))</b>
+                    </div>
+
+                    @if (Model.BestCurrencies.Any(r => r.Title.Contains(rate)))
+                    {
+                        <div class="best-rate-currencies">
+                            <div class="best-rate-currency">
+                                <div class="best-rate-deal">Покупка</div>
+                                <RateItem @key="@(Model.BestCurrencies.FirstOrDefault(r=>r.Title.Contains($"{rate} Buy")))"
+                                          RateModel="@(Model.BestCurrencies.FirstOrDefault(r=>r.Title.Contains($"{rate} Buy")))"
+                                          BankId="@BankId"
+                                          OnClick="Toggle" />
+                            </div>
+                            <div class="best-rate-currency">
+                                <div class="best-rate-deal">Продажа</div>
+                                <RateItem @key="@(Model.BestCurrencies.FirstOrDefault(r=>r.Title.Contains($"{rate} Sell")))"
+                                          RateModel="@(Model.BestCurrencies.FirstOrDefault(r=>r.Title.Contains($"{rate} Sell")))"
+                                          BankId="@BankId"
+                                          OnClick="Toggle" />
+                            </div>
+                        </div>
+                    }
+                </div>
+             }            
+        </div>
+        <div class="best-rates-banks @(IsOpen ? "open" : "")">
+            @foreach(var bank in banks)
+            {
+                <div class="best-bank">@bank.DepartmentName,</div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public DashboardViewModel Model { get; set; } = null!;
+    [Parameter] public int BankId { get; set; }
+    public bool IsOpen { get; set; }
+
+    private List<DepartmentCurrencyViewModel> banks = [];
+
+    private string? openedTitle;
+    private string? rateTitle;
+
+    private void Toggle(RateViewModel model)
+    {
+        openedTitle = openedTitle == model.Title ? null : model.Title;
+        IsOpen = openedTitle == null ? false : true;        
+        banks = model.BestBanks;
+    }
+}

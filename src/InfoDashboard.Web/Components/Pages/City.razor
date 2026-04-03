@@ -1,0 +1,101 @@
+﻿@page "/city/{Id:int}"
+@using Microsoft.Extensions.Options
+@inject IBankService BankService
+@inject GetCurrencyService GetCurrency
+@inject IOptions<BankSettings> Options
+@implements IDisposable
+@rendermode InteractiveServer
+
+@if (mainBank != null && dashbordViewModel != null)
+{
+    <CustomErrorBoundary>
+       <BestRates Model="dashbordViewModel" BankId="@mainBank.Id" />
+    </CustomErrorBoundary>
+   
+    <CustomErrorBoundary>
+       <RatesTable Model="dashbordViewModel" />
+    </CustomErrorBoundary>
+}
+else
+{
+    <div class="loading-message">
+       <p>Loading...</p>
+    </div>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private BankDTO? mainBank;
+    private DashboardViewModel? dashbordViewModel;
+    private Timer? timer;   
+
+    protected override async Task OnInitializedAsync()
+    {       
+        mainBank = await BankService.GetBankByNameAsync(Options.Value.BankName);
+        mainBank ??= (await BankService.GetAllBanksAsync()).FirstOrDefault();
+
+        if (mainBank != null)
+        {
+            await LoadData();
+            timer = new Timer(async _ =>
+            {
+                await InvokeAsync(async () =>
+            {
+                await LoadData();
+                StateHasChanged();
+            });              
+            }, null, 10000, 10000);
+        }
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            var newData = await GetCurrency.GetAllCurrencies(Id, mainBank!.Id);
+
+            if (dashbordViewModel == null && newData != null)
+            {
+                dashbordViewModel = newData;
+                return;
+            }
+
+            foreach (var existing in dashbordViewModel.BestCurrencies)
+            {
+                var updated = newData.BestCurrencies
+                    .FirstOrDefault(x => x.Title == existing.Title);
+
+                if (updated != null)
+                {
+                    existing.Rate = updated.Rate;
+                    existing.BestBanks = updated.BestBanks;
+                }
+            }
+
+            dashbordViewModel.OurCurrency = newData.OurCurrency;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            dashbordViewModel = new();
+        }
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+
+    private async Task Reload()
+    {
+        try
+        {
+            await LoadData();
+        }
+        catch
+        {
+            throw;
+        }
+    }
+}

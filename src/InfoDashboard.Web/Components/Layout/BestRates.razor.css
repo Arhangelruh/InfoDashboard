@@ -1,0 +1,47 @@
+.best-rates-block {    
+    max-width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.best-rates{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.best-rate-currencies{
+    display: flex;
+}
+
+.best-rate-currency{
+    margin: 10px;
+}
+
+.best-rates-banks {
+  display: none;
+}
+
+.best-rates-banks.open {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.best-bank{
+    font-size: 12px;
+    margin-left: 10px;   
+}
+
+@media (max-width: 1000px) {
+    .best-rates-block{
+        max-width: 100%;
+    }
+   .best-rates{
+    width: 100%;
+   }
+
+}

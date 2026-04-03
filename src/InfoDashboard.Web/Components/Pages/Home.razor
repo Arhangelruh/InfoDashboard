@@ -1,0 +1,19 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject ICityService CityService
+@inject NavigationManager Nav
+
+<PageTitle>Home</PageTitle>
+<div class="welcome-box">
+    <div class="welcome-message"> <h3>Добро пожаловать в InfoDashboard.</h3></div>
+    <div class="welcome-message"><h4>Пожалуйста выберете город в навигационном меню для начала работы с приложением.</h4></div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var cities = await CityService.GetAllAsync();
+        var cityId = cities.FirstOrDefault().Id;
+        Nav.NavigateTo($"/city/{cityId}");
+    }
+}

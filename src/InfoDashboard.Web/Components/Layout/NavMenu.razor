@@ -1,0 +1,33 @@
+﻿@inject ICityService CityService
+
+<div class="navmenu">
+    <div class="logo-container">
+        <a class="navbar-brand" href="">
+           <div class="navbar-content">
+              <img src="/Pictures/Home.svg" />
+              <p class="logotext">InfoDashboard</p>
+            </div>
+        </a>
+    </div>  
+    @if(cities != null && cities.Count > 0){
+        <nav class="nav flex-column">    
+          @foreach(var city in cities){
+            <div class="nav-item">
+              <NavLink class="nav-link" href="@($"/city/{city.Id}")">
+               @city.CityName
+              </NavLink>
+            </div>        
+          }
+    </nav>
+    }
+</div>
+
+
+@code{
+    private List<CityDTO>? cities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cities = await CityService.GetAllAsync();
+    }
+}
