@@ -5,7 +5,7 @@
 		/// <summary>
 		/// Usd buy currency.
 		/// </summary>
-		public double USDBuyRate { get; set; }
+		public double USDBuyRate { get; set; }		
 
 		/// <summary>
 		/// Usd sale currency.
@@ -76,5 +76,50 @@
 		/// Bank id.
 		/// </summary>
 		public int BankId { get; set; }
+
+		/// <summary>
+		/// Cummon value bought usd.
+		/// </summary>
+		public decimal USDBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Cummon value sold usd.
+		/// </summary>
+		public decimal USDSellCollectSumm { get; set; }
+
+		/// <summary>
+		/// Margine.
+		/// </summary>
+		public decimal USDMargin { get; set; }
+
+		/// <summary>
+		/// Cummon value bought EUR.
+		/// </summary>
+		public decimal EURBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Cummon value sold EUR.
+		/// </summary>
+		public decimal EURSellCollectSumm { get; set; }
+
+		/// <summary>
+		/// Margine.
+		/// </summary>
+		public decimal EURMargin { get; set; }
+
+		/// <summary>
+		/// Cummon value bought RUB.
+		/// </summary>
+		public decimal RUBBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Cummon value sold RUB.
+		/// </summary>
+		public decimal RUBSellCollectSumm { get; set; }
+
+		/// <summary>
+		/// Margine.
+		/// </summary>
+		public decimal RUBMargin { get; set; }
 	}
 }
