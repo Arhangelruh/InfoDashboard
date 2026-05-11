@@ -1,5 +1,8 @@
 ﻿using InfoDashboard.Application.Interfaces;
+using InfoDashboard.Application.Services;
+using InfoDashboard.Infrastructure.Data.Departments;
 using InfoDashboard.Infrastructure.Data.PgDB.Context;
+using InfoDashboard.Infrastructure.Data.ReportDB.Context;
 using InfoDashboard.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,11 +26,24 @@ namespace InfoDashboard.Infrastructure
 			services.AddDbContextFactory<GreatCurrencyContext>(options =>
 			  options.UseNpgsql(connectionString));
 
+			var reportingConnectionString =
+				configuration.GetConnectionString("ReportingDatabase")
+				?? Environment.GetEnvironmentVariable("ReportingDatabase");
+
+			if (string.IsNullOrWhiteSpace(reportingConnectionString))
+				throw new InvalidOperationException("Connection string to ReportDB is not configured.");
+
+			services.AddDbContextFactory<ReportingDbContext>(options =>
+			       options.UseSqlServer(reportingConnectionString));
+
 			services.AddScoped<ICityService, CityService>();
 			services.AddScoped<IBankService, BankService>();
 			services.AddScoped<ICurrencyService, CurrencyService>();
+			services.AddScoped<IGetExchangeReportInfo, GetExchangeReportInfo>();
+			services.AddScoped<ICashReport, CashReport>();
+			services.AddScoped<IGetDepartments, GetDepartments>();
 
-			return services;
+			return services; 
 		}
 	}
 }
