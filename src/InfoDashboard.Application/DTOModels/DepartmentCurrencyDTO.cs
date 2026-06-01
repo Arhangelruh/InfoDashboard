@@ -20,6 +20,6 @@
 		/// <summary>
 		/// Margin.
 		/// </summary>
-		public decimal Margin {  get; set; }
+		public decimal? Margin {  get; set; }
 	}
 }

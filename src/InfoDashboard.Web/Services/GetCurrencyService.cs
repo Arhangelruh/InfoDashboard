@@ -197,13 +197,19 @@ namespace InfoDashboard.Web.Services
 						EURUSDSellRate = b.EURUSDSellRate,
 						USDBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").CashBuy,
 						USDSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").CashSell,
-						USDMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").Margin,
+						USDMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").Margin ?? 0,
 						EURBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").CashBuy,
 						EURSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").CashSell,
-						EURMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").Margin,
+						EURMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").Margin ?? 0,
 						RUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").CashBuy,
 						RUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").CashSell,
-						RUBMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").Margin
+						RUBMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").Margin ?? 0,
+						EURUSDBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/USD").CashBuy,
+						EURUSDSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/USD").CashSell,
+						USDRUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD/RUB").CashBuy,
+						USDRUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD/RUB").CashSell,
+						EURRUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/RUB").CashBuy,
+						EURRUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/RUB").CashSell
 					})
 					.ToList();
 

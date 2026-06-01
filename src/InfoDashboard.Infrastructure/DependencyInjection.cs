@@ -42,6 +42,8 @@ namespace InfoDashboard.Infrastructure
 			services.AddScoped<IGetExchangeReportInfo, GetExchangeReportInfo>();
 			services.AddScoped<ICashReport, CashReport>();
 			services.AddScoped<IGetDepartments, GetDepartments>();
+			services.AddScoped<IGetConversionReport, GetConversionReport>();
+			services.AddScoped<ICashConversionReport, CashConversionReport>();
 
 			return services; 
 		}

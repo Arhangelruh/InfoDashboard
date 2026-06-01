@@ -121,5 +121,35 @@
 		/// Margine.
 		/// </summary>
 		public decimal RUBMargin { get; set; }
+
+		/// <summary>
+		/// Common value conversed EUR to USD.
+		/// </summary>
+		public decimal EURUSDBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Common value conversed EUR to USD, reverse.
+		/// </summary>
+		public decimal EURUSDSellCollectSumm { get; set; }
+
+		/// <summary>
+		/// Common value conversed USD to RUB.
+		/// </summary>
+		public decimal USDRUBBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Common value conversed USD to RUB, reverse.
+		/// </summary>
+		public decimal USDRUBSellCollectSumm { get; set; }
+
+		/// <summary>
+		/// Common value conversed EUR to RUB.
+		/// </summary>
+		public decimal EURRUBBuyCollectSumm { get; set; }
+
+		/// <summary>
+		/// Common value conversed EUR to RUB, reverse.
+		/// </summary>
+		public decimal EURRUBSellCollectSumm { get; set; }
 	}
 }

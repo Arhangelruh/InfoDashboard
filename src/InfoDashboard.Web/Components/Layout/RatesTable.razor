@@ -33,39 +33,39 @@
 		<tr @key="department.BankDepartmentId">
 				<td class="table-name-column" rowspan="4">@department.DepartmentName</td>
 				<td class="table-label-medium">КУРС</td>
-			<td>@department.USDBuyRate</td>
-			<td>@department.USDSaleRate</td>
-			<td>@department.EURBuyRate</td>
-			<td>@department.EURSaleRate</td>
-			<td>@department.RUBBuyRate</td>
-			<td>@department.RUBSaleRate</td>
-			<td>@department.EURUSDBuyRate</td>
-			<td>@department.EURUSDSellRate</td>
-			<td>@department.USDRUBBuyRate</td>
-			<td>@department.USDRUBSellRate</td>
-			<td>@department.EURRUBBuyRate</td>
-			<td>@department.EURRUBSellRate</td>
+				<td>@(department.USDBuyRate != 0 ? department.USDBuyRate : "")</td>
+				<td>@(department.USDSaleRate != 0 ? department.USDSaleRate : "")</td>
+				<td>@(department.EURBuyRate != 0 ? department.EURBuyRate : "")</td>
+				<td>@(department.EURSaleRate != 0 ? department.EURSaleRate : "")</td>
+				<td>@(department.RUBBuyRate != 0 ? department.RUBBuyRate : "")</td>
+				<td>@(department.RUBSaleRate != 0 ? department.RUBSaleRate : "")</td>
+				<td>@(department.EURUSDBuyRate != 0 ? department.EURUSDBuyRate : "")</td>
+				<td>@(department.EURUSDSellRate != 0 ? department.EURUSDSellRate : "")</td>
+				<td>@(department.USDRUBBuyRate != 0 ? department.USDRUBBuyRate : "")</td>
+				<td>@(department.USDRUBSellRate != 0 ? department.USDRUBSellRate : "")</td>
+				<td>@(department.EURRUBBuyRate != 0 ? department.EURRUBBuyRate : "")</td>
+				<td>@(department.EURRUBSellRate != 0 ? department.EURRUBSellRate : "")</td>
 		</tr>
 		<tr>
 				<td class="table-label-medium">ОБЬЕМ ОПЕРАЦИЙ</td>
-			<td>@department.USDBuyCollectSumm</td>
-			<td>@department.USDSellCollectSumm</td>
-			<td>@department.EURBuyCollectSumm</td>
-			<td>@department.EURSellCollectSumm</td>
-			<td>@department.RUBBuyCollectSumm</td>
-			<td>@department.RUBSellCollectSumm</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+				<td>@(department.USDBuyCollectSumm != 0 ? department.USDBuyCollectSumm : "")</td>
+				<td>@(department.USDSellCollectSumm != 0 ? department.USDSellCollectSumm : "")</td>
+				<td>@(department.EURBuyCollectSumm != 0 ? department.EURBuyCollectSumm : "")</td>
+				<td>@(department.EURSellCollectSumm != 0 ? department.EURSellCollectSumm : "")</td>
+				<td>@(department.RUBBuyCollectSumm != 0 ? department.RUBBuyCollectSumm : "")</td>
+				<td>@(department.RUBSellCollectSumm != 0 ? department.RUBSellCollectSumm : "")</td>
+				<td>@(department.EURUSDBuyCollectSumm != 0 ? department.EURUSDBuyCollectSumm : "")</td>
+				<td>@(department.EURUSDSellCollectSumm != 0 ? department.EURUSDSellCollectSumm : "")</td>
+				<td>@(department.USDRUBBuyCollectSumm != 0 ? department.USDRUBBuyCollectSumm : "")</td>
+				<td>@(department.USDRUBSellCollectSumm != 0 ? department.USDRUBSellCollectSumm : "")</td>
+				<td>@(department.EURRUBBuyCollectSumm != 0 ? department.EURRUBBuyCollectSumm : "")</td>
+				<td>@(department.EURRUBSellCollectSumm != 0 ? department.EURRUBSellCollectSumm : "")</td>
 		</tr>
 		<tr>
 				<td class="table-label-medium">МАРЖА</td>
-			<td colspan="2">@department.USDMargin</td>
-			<td colspan="2">@department.EURMargin</td>
-			<td colspan="2">@department.RUBMargin</td>
+			<td colspan="2">@(department.USDMargin != 0 ? department.USDMargin : "")</td>
+			<td colspan="2">@(department.EURMargin != 0 ? department.EURMargin : "")</td>
+			<td colspan="2">@(department.RUBMargin != 0 ? department.RUBMargin : "")</td>
 			<td colspan="2"></td>
 			<td colspan="2"></td>
 			<td colspan="2"></td>
@@ -80,5 +80,4 @@
 </div>
 @code {
 	[Parameter] public DashboardViewModel Model { get; set; } = null!;
-
 }
