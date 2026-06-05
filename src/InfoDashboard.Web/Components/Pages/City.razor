@@ -3,6 +3,7 @@
 @inject IBankService BankService
 @inject GetCurrencyService GetCurrency
 @inject IOptions<BankSettings> Options
+@inject ICashReport CashReport
 @implements IDisposable
 @rendermode InteractiveServer
 
@@ -45,15 +46,15 @@ else
                 await LoadData();
                 StateHasChanged();
             });              
-            }, null, 10000, 10000);
+            }, null, 300000, 300000);
         }
     }
 
     private async Task LoadData()
-    {
+    {       
         try
         {
-            var newData = await GetCurrency.GetAllCurrencies(Id, mainBank!.Id);
+            var newData = await GetCurrency.GetAllCurrencies(Id, mainBank!.Id);           
 
             if (dashbordViewModel == null && newData != null)
             {

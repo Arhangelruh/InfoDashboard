@@ -1,11 +1,13 @@
-﻿using InfoDashboard.Application.Interfaces;
+﻿using InfoDashboard.Application.DTOModels;
+using InfoDashboard.Application.Interfaces;
 using InfoDashboard.Web.ViewModels;
 
 namespace InfoDashboard.Web.Services
 {
-	public class GetCurrencyService(ICurrencyService currencyService)
+	public class GetCurrencyService(ICurrencyService currencyService, ICashReport cashReport)
 	{
 		private readonly ICurrencyService _currencyService = currencyService ?? throw new ArgumentNullException(nameof(currencyService));
+		private readonly ICashReport _cashReport = cashReport ?? throw new ArgumentNullException(nameof(cashReport));
 
 		public async Task<DashboardViewModel> GetAllCurrencies(int cityId, int bankId)
 		{
@@ -172,6 +174,8 @@ namespace InfoDashboard.Web.Services
 				   },
 				];
 
+				var cashReport = await _cashReport.CollectDepartmentInformation();
+
 				var ourRates = currency
 					.Where(b => b.BankId == bankId)
 					.Select(b => new DepartmentCurrencyViewModel
@@ -179,8 +183,8 @@ namespace InfoDashboard.Web.Services
 						BankId = b.BankId,
 						BankDepartmentId = b.BankDepartmentId,
 						DepartmentName = b.DepartmentName,
-						USDBuyRate = b.USDBuyRate,
-						USDSaleRate = b.USDSaleRate,
+						USDBuyRate = b.USDBuyRate,						
+						USDSaleRate = b.USDSaleRate,						
 						EURBuyRate = b.EURBuyRate,
 						EURSaleRate = b.EURSaleRate,
 						RUBBuyRate = b.RUBBuyRate,
@@ -190,7 +194,22 @@ namespace InfoDashboard.Web.Services
 						EURRUBBuyRate = b.EURRUBBuyRate,
 						EURRUBSellRate = b.EURRUBSellRate,
 						EURUSDBuyRate = b.EURUSDBuyRate,
-						EURUSDSellRate = b.EURUSDSellRate
+						EURUSDSellRate = b.EURUSDSellRate,
+						USDBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").CashBuy,
+						USDSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").CashSell,
+						USDMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "USD").Margin ?? 0,
+						EURBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").CashBuy,
+						EURSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").CashSell,
+						EURMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR").Margin ?? 0,
+						RUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").CashBuy,
+						RUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").CashSell,
+						RUBMargin = GetCurrencyInformation(cashReport, b.DepartmentName, "RUB").Margin ?? 0,
+						EURUSDBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/USD").CashBuy,
+						EURUSDSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/USD").CashSell,
+						USDRUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD/RUB").CashBuy,
+						USDRUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "USD/RUB").CashSell,
+						EURRUBBuyCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/RUB").CashBuy,
+						EURRUBSellCollectSumm = GetCurrencyInformation(cashReport, b.DepartmentName, "EUR/RUB").CashSell
 					})
 					.ToList();
 
@@ -202,6 +221,21 @@ namespace InfoDashboard.Web.Services
 				return model;
 			}
 			return new();
+		}
+
+		private DepartmentCurrencyDTO GetCurrencyInformation(List<DepartmentDTO> list, string departmentName, string currency) {
+			var clearDepartmentName = departmentName.Replace("\"", "").Replace("\\", "").Replace("\\", "").Replace("«", "").Replace("»", "");
+			var targetDepartment = list.FirstOrDefault(d => clearDepartmentName.Contains(d.DepartmentName));
+			if (targetDepartment != null)
+			{
+				var departmentCurrency = targetDepartment.DepartmentCurrency.FirstOrDefault(c => c.Currency == currency);
+				if (departmentCurrency != null)
+				{
+					return departmentCurrency;
+				}
+			}
+
+			return new DepartmentCurrencyDTO();
 		}
 	}
 }
